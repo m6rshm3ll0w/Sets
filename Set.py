@@ -26,4 +26,4 @@ while n <= 11:
                     "# : ")
     lbd.append(sel_tab)
     n += 1
-print(lbd)
+
