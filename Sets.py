@@ -11,6 +11,13 @@ def reload(str):
     return lista
 
 
+def dont_false(chars_f,chars_s,chars_t):
+    if chars_f != chars_s and chars_f != chars_t and chars_s != chars_f and chars_s != chars_t and chars_t != chars_f and chars_t != chars_s:
+        return "False"
+    if chars_f == chars_s == chars_t:
+        return "True"
+
+
 def comparison(selected_set):
     first_elem = selected_set[0]
     second_elem = selected_set[1]
@@ -31,39 +38,38 @@ def comparison(selected_set):
     bright_f = F_e[3]
     bright_s = S_e[3]
     bright_t = T_e[3]
-    if chars_f == chars_s == chars_t:
-        print(chars_f, chars_s, chars_t,"111")# одинаковое количество фигур
-        if color_f == color_s == color_t:  #
-            if form_f == form_s == form_t:
-                if bright_f == bright_s == bright_t:
+
+    if "True" == dont_false(chars_f, chars_s, chars_t):# одинаковое количество фигур
+        if "True" == dont_false(color_f, color_s, color_t):  #
+            if "True" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
-            if form_f != form_s != form_t:
-                if bright_f == bright_s == bright_t:
+            if "False" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
             else:
                 print("dont set")
                 return "False"
-        if color_f != color_s != color_t:
-            if form_f == form_s == form_t:
-                if bright_f == bright_s == bright_t:
+        if "False" == dont_false(color_f, color_s, color_t):
+            if "True" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
-
-            if form_f != form_s != form_t:
-                if bright_f == bright_s == bright_t:
+            if "False" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
@@ -72,38 +78,37 @@ def comparison(selected_set):
         else:
             return "False"
 
-    if chars_f != chars_s and chars_f != chars_t and chars_s != chars_f and chars_s != chars_t and chars_t != chars_f and chars_t != chars_s:  # разное
-        print(chars_f, chars_s, chars_t, "123")
-        if color_f == color_s == color_t:  #
-            if form_f == form_s == form_t:
-                if bright_f == bright_s == bright_t:
+    if "False" == dont_false(chars_f, chars_s, chars_t):  # разное
+        if "True" == dont_false(color_f, color_s, color_t):  #
+            if "True" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
-            if form_f != form_s != form_t:
-                if bright_f == bright_s == bright_t:
+            if "False" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
             else:
+                print("dont set")
                 return "False"
-        if color_f != color_s != color_t:
-            if form_f == form_s == form_t:
-                if bright_f == bright_s == bright_t:
+        if "False" == dont_false(color_f, color_s, color_t):
+            if "True" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
-
-            if form_f != form_s != form_t:
-                if bright_f == bright_s == bright_t:
+            if "False" == dont_false(form_f, form_s, form_t):
+                if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
-                if bright_f != bright_s != bright_t:
+                if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
@@ -161,19 +166,54 @@ def search_sets(set_variat):
     i = 0
     ddrs = set_variat.copy()
 
-    while i <= len(ddrs):
+    while i <= 119:
         selected_set = ddrs[i]
         exit_set = comparison(selected_set)
         if exit_set == "True":
             listseww.append(selected_set)
-            print(f"{selected_set} it's set")
         else:
             pass
         i += 1
+    return listseww
 
 
+def print_set_sh(list_set_view,lbd):
+    i = 1
+    i = int(i)
+    list = []
+    print(f"вы ввели\n"
+          f"|{lbd[0]}|{lbd[1]}|{lbd[2]}|\n"
+          f"|{lbd[3]}|{lbd[4]}|{lbd[5]}|\n"
+          f"|{lbd[6]}|{lbd[7]}|{lbd[8]}|\n"
+          f"|{lbd[9]}|{lbd[10]}|{lbd[11]}|\n"
+          f"из этих карточек можно собрать такие сеты:")
+    exit_print_set = ""
+    set_numb = 0
+    lisset = None
+    while i <= len(list_set_view):
+
+        set_wr = list_set_view[0]
+        for x in set_wr:
+            list.append(lbd.index(x))
+        list.sort()
+        if list == lisset:
+            break
+        print(f"cет № {i}")
+        lisset = list
+        while set_numb <= 11:
+            if set_numb == list[0] or set_numb == list[1] or set_numb == list[2]:
+                exit_print_set = exit_print_set + "|_#_|"
+            else:
+                exit_print_set = exit_print_set + "|___|"
+            if set_numb == 2 or set_numb == 5 or set_numb == 8:
+                exit_print_set = exit_print_set + "\n"
+            set_numb += 1
+        print(exit_print_set)
+        i = i + 1
 print("‖ Making pares ...")
 pare_set = setect_pare(lbd)
-set_variat = manage_set(pare_set)
-search_sets(set_variat)
+set_variations = manage_set(pare_set)
+list_set_view = search_sets(set_variations)
+print_set_sh(list_set_view,lbd)
 
+input("to Exit code press Enter")
