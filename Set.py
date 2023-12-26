@@ -1,5 +1,4 @@
-import os
-import time
+from typing import Any
 
 n = 0
 tabs_c = ["|_#_|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
@@ -15,24 +14,24 @@ tabs_c = ["|_#_|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
           "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|_#_|___|",
           "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|_#_|"
           ]
-lbd = ['2RO2', '3VR2', '1RO3',
-       '2GR2', '2GR1', '2VO2',
-       '2VS2', '2RR1', '1GR1',
-       '3GS1', '2VR1', '2RR3']
+lbd: list[str | Any] = ['2RO2', '3VR2', '1RO3',
+                        '2GR2', '2GR1', '2VO2',
+                        '2VS2', '2RR1', '1GR1',
+                        '3GS1', '2VR1', '2RR3']
 
 
 # search
 
 
-def select_pare(lbd):
+def select_pare(l_b_d):
     i = 0
     lists = []
     print("‖ Генерация пар ...")
 
     while i <= 11:
 
-        newCard = lbd.copy()  # создаем копию введеного поля
-        card1 = lbd[i]  # выбираем 1 карту по порядку 1 --- 12
+        newCard = l_b_d.copy()  # создаем копию введеного поля
+        card1 = l_b_d[i]  # выбираем 1 карту по порядку 1 --- 12
         newCard.remove(card1)  # из копии поля удаляем выбранную карту
 
         for x in newCard:  # первый Элем...
@@ -58,7 +57,6 @@ def select_pare(lbd):
         i += 1
 
     print(f"‖‗ В итоге мы получили {len(clear_list)} пар ...\n")
-    print(clear_list)
     return clear_list
 
 
@@ -82,33 +80,23 @@ def manage_set(pare_set):
         i += 1
         print(f"‖ ‖ {i} сет с карточками {card1} {card2} готов! [x10]")
     print(f"‖‗ В итоге мы получили {len(lists)} сетов ...\n")
-
-    # clear_list = lists.copy()
-    # i = 0
-    # while i <= 65:
-    #     t_set = clear_list[i]
-    #     fe, se, te = t_set[0], t_set[1], t_set[2]
-    #
-    #     t_set2 = [te, se, fe]
-    #
-    #     clear_list.remove(t_set2)
-    #
-    #     i += 1
     return lists
 
 
 # search
 
 
-def reload(str):
+def reload(s_t_r):
     lista = []
-    for c in str:  # идем по строке
+    for c in s_t_r:  # идем по строке
         lista.append(c)  # добавляем буквы в список
     return lista
 
 
 def dont_false(chars_f, chars_s, chars_t):
-    if chars_f != chars_s and chars_f != chars_t and chars_s != chars_f and chars_s != chars_t and chars_t != chars_f and chars_t != chars_s:
+    if chars_f != chars_s and chars_f != chars_t and \
+            chars_s != chars_f and chars_s != chars_t and \
+            chars_t != chars_f and chars_t != chars_s:
         return "False"
     if chars_f == chars_s == chars_t:
         return "True"
@@ -152,7 +140,6 @@ def comparison(selected_set):
                 else:
                     return "False"
             else:
-                print("dont set")
                 return "False"
         if "False" == dont_false(color_f, color_s, color_t):
             if "True" == dont_false(form_f, form_s, form_t):
@@ -191,7 +178,6 @@ def comparison(selected_set):
                 else:
                     return "False"
             else:
-                print("dont set")
                 return "False"
         if "False" == dont_false(color_f, color_s, color_t):
             if "True" == dont_false(form_f, form_s, form_t):
@@ -213,7 +199,6 @@ def comparison(selected_set):
         else:
             return "False"
     else:
-        # print("is dont set")
         return "False"
 
 
@@ -236,9 +221,10 @@ def search_sets(set_variat):
 # print
 
 
-def print_set_sh(list_set, lbd):
-    i = 1
-    # i = int(i)
+def print_set_sh(list_set):
+    i = 0
+    j = 0
+    set_card_numb = []
 
     print(f"\nBы ввели: \n\n"
           f"| {lbd[0]} | {lbd[1]} | {lbd[2]} |\n"
@@ -247,21 +233,26 @@ def print_set_sh(list_set, lbd):
           f"| {lbd[9]} | {lbd[10]} | {lbd[11]} |\n\n"
           f"из этих карточек можно собрать такие сеты:")
 
-    list_set.sort()
-    print(list_set)
-    last_list = []
-    while i <= len(list_set):
-        exit_print_set = ""
-        set_numb = 0
-
+    while j <= len(list_set)-1:
         list = []
-        set_wr = list_set[i - 1]
-
+        set_wr = list_set[j - 1]
         for x in set_wr:
             list.append(lbd.index(x))
         list.sort()
+        set_card_numb.append(list)
+        j += 1
 
-        print(f"cет № {i}")
+    set_card_numb.sort()
+    print(set_card_numb)
+
+
+    while i <= len(list_set)-1:
+        exit_print_set = ""
+        set_numb = 0
+
+        list = set_card_numb[i]
+
+        print(f"cет № {i+1}")
         while set_numb <= 11:
             if set_numb == list[0] or set_numb == list[1] or set_numb == list[2]:
                 exit_print_set = exit_print_set + "|_#_|"
@@ -272,7 +263,7 @@ def print_set_sh(list_set, lbd):
             set_numb += 1
         print(exit_print_set)
 
-        i = i + 1
+        i += 1
 
 
 # print
@@ -300,7 +291,7 @@ def main():
     pare_set = select_pare(lbd)  # documented
     set_variations = manage_set(pare_set)  # ~~~~
     list_set = search_sets(set_variations)  #
-    print_set_sh(list_set, lbd)  # ok
+    print_set_sh(list_set)  # ok
     input("To exit code press enter")
 
 
