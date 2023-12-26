@@ -1,6 +1,7 @@
 import os
 import time
 
+n = 0
 tabs_c = ["|_#_|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
           "|___|_#_|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
           "|___|___|_#_|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
@@ -14,18 +15,10 @@ tabs_c = ["|_#_|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
           "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|_#_|___|",
           "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|_#_|"
           ]
-n = 0
-lbd = ['3VO1', '1VR1', '3GR1',
-       '3GR3', '1GS1', '2VS3',
-       '2RR1', '3GS2', '3RO1',
-       '1GR3', '2RO2', '2GS2']
-
-
-def reload(str):
-    lista = []
-    for c in str:  # идем по строке
-        lista.append(c)  # добавляем буквы в список
-    return lista
+lbd = ['2RO2', '3VR2', '1RO3',
+       '2GR2', '2GR1', '2VO2',
+       '2VS2', '2RR1', '1GR1',
+       '3GS1', '2VR1', '2RR3']
 
 
 # search
@@ -41,7 +34,6 @@ def select_pare(lbd):
         newCard = lbd.copy()  # создаем копию введеного поля
         card1 = lbd[i]  # выбираем 1 карту по порядку 1 --- 12
         newCard.remove(card1)  # из копии поля удаляем выбранную карту
-
 
         for x in newCard:  # первый Элем...
             # print(f"‖ ‖ создаем {dnf}/11 пару для {i + 1}/12 карт")
@@ -59,14 +51,14 @@ def select_pare(lbd):
     clear_list = lists.copy()
     print("‖ Удаление повторяющихся пар ...")
     while i <= 65:
-
         t_pare = clear_list[i]
         fe, se = t_pare[0], t_pare[1]
-        t_pare = [fe, se]
+        t_pare = [se, fe]
         clear_list.remove(t_pare)
         i += 1
 
     print(f"‖‗ В итоге мы получили {len(clear_list)} пар ...\n")
+    print(clear_list)
     return clear_list
 
 
@@ -89,10 +81,30 @@ def manage_set(pare_set):
             lists.append(sefa)
         i += 1
         print(f"‖ ‖ {i} сет с карточками {card1} {card2} готов! [x10]")
-    print(f"‖‗ В итоге мы получили {len(lists)} пар ...\n")
+    print(f"‖‗ В итоге мы получили {len(lists)} сетов ...\n")
 
-
+    # clear_list = lists.copy()
+    # i = 0
+    # while i <= 65:
+    #     t_set = clear_list[i]
+    #     fe, se, te = t_set[0], t_set[1], t_set[2]
+    #
+    #     t_set2 = [te, se, fe]
+    #
+    #     clear_list.remove(t_set2)
+    #
+    #     i += 1
     return lists
+
+
+# search
+
+
+def reload(str):
+    lista = []
+    for c in str:  # идем по строке
+        lista.append(c)  # добавляем буквы в список
+    return lista
 
 
 def dont_false(chars_f, chars_s, chars_t):
@@ -210,7 +222,7 @@ def search_sets(set_variat):
     i = 0
     ddrs = set_variat.copy()
 
-    while i <= 119:
+    while i <= len(ddrs) - 1:
         selected_set = ddrs[i]
         exit_set = comparison(selected_set)
         if exit_set == "True":
@@ -221,24 +233,34 @@ def search_sets(set_variat):
     return listseww
 
 
+# print
+
+
 def print_set_sh(list_set, lbd):
     i = 1
     # i = int(i)
-    list = []
+
     print(f"\nBы ввели: \n\n"
           f"| {lbd[0]} | {lbd[1]} | {lbd[2]} |\n"
           f"| {lbd[3]} | {lbd[4]} | {lbd[5]} |\n"
           f"| {lbd[6]} | {lbd[7]} | {lbd[8]} |\n"
           f"| {lbd[9]} | {lbd[10]} | {lbd[11]} |\n\n"
           f"из этих карточек можно собрать такие сеты:")
-    exit_print_set = ""
-    set_numb = 0
-    while i <= len(list_set):
 
-        set_wr = list_set[0]
+    list_set.sort()
+    print(list_set)
+    last_list = []
+    while i <= len(list_set):
+        exit_print_set = ""
+        set_numb = 0
+
+        list = []
+        set_wr = list_set[i - 1]
+
         for x in set_wr:
             list.append(lbd.index(x))
         list.sort()
+
         print(f"cет № {i}")
         while set_numb <= 11:
             if set_numb == list[0] or set_numb == list[1] or set_numb == list[2]:
@@ -249,9 +271,13 @@ def print_set_sh(list_set, lbd):
                 exit_print_set = exit_print_set + "\n"
             set_numb += 1
         print(exit_print_set)
+
         i = i + 1
 
 
+# print
+
+# input
 # while n <= 11:
 #     si = tabs_c[n]
 #
@@ -270,10 +296,12 @@ def print_set_sh(list_set, lbd):
 #     os.system('CLS')
 #     lbd.append(sel_tab)
 
+def main():
+    pare_set = select_pare(lbd)  # documented
+    set_variations = manage_set(pare_set)  # ~~~~
+    list_set = search_sets(set_variations)  #
+    print_set_sh(list_set, lbd)  # ok
+    input("To exit code press enter")
 
-pare_set = select_pare(lbd) # documented
-set_variations = manage_set(pare_set) #
-list_set = search_sets(set_variations) #
-print_set_sh(list_set, lbd) # ok
 
-input("To exit code press enter")
+main()
