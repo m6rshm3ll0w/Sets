@@ -243,8 +243,7 @@ def print_set_sh(list_set):
         j += 1
 
     set_card_numb.sort()
-    print(set_card_numb)
-
+    # print(set_card_numb)
 
     while i <= len(list_set)-1:
         exit_print_set = ""
@@ -262,7 +261,6 @@ def print_set_sh(list_set):
                 exit_print_set = exit_print_set + "\n"
             set_numb += 1
         print(exit_print_set)
-
         i += 1
 
 
