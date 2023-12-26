@@ -231,7 +231,7 @@ def print_set_sh(list_set):
           f"| {lbd[3]} | {lbd[4]} | {lbd[5]} |\n"
           f"| {lbd[6]} | {lbd[7]} | {lbd[8]} |\n"
           f"| {lbd[9]} | {lbd[10]} | {lbd[11]} |\n\n"
-          f"из этих карточек можно собрать такие сеты:")
+          f"из этих карточек можно собрать такие сеты:\n")
 
     while j <= len(list_set)-1:
         list = []
@@ -243,7 +243,7 @@ def print_set_sh(list_set):
         j += 1
 
     set_card_numb.sort()
-    # print(set_card_numb)
+    print(set_card_numb)
 
     while i <= len(list_set)-1:
         exit_print_set = ""
