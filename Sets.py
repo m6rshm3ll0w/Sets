@@ -38,7 +38,6 @@ def comparison(selected_set):
     bright_f = F_e[3]
     bright_s = S_e[3]
     bright_t = T_e[3]
-
     if "True" == dont_false(chars_f, chars_s, chars_t):# одинаковое количество фигур
         if "True" == dont_false(color_f, color_s, color_t):  #
             if "True" == dont_false(form_f, form_s, form_t):
@@ -66,6 +65,7 @@ def comparison(selected_set):
                     return "True"
                 else:
                     return "False"
+
             if "False" == dont_false(form_f, form_s, form_t):
                 if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
@@ -101,10 +101,12 @@ def comparison(selected_set):
             if "True" == dont_false(form_f, form_s, form_t):
                 if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
+
                 if "False" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
                 else:
                     return "False"
+
             if "False" == dont_false(form_f, form_s, form_t):
                 if "True" == dont_false(bright_f, bright_s, bright_t):
                     return "True"
@@ -166,14 +168,16 @@ def search_sets(set_variat):
     i = 0
     ddrs = set_variat.copy()
 
-    while i <= 119:
-        selected_set = ddrs[i]
-        exit_set = comparison(selected_set)
-        if exit_set == "True":
-            listseww.append(selected_set)
-        else:
-            pass
-        i += 1
+    while i <= len(ddrs):
+        while i <= 119:
+            selected_set = ddrs[i]
+            exit_set = comparison(selected_set)
+            if exit_set == "True":
+                listseww.append(selected_set)
+                print(f"{selected_set} it's set")
+            else:
+                pass
+            i += 1
     return listseww
 
 
@@ -212,8 +216,11 @@ def print_set_sh(list_set_view,lbd):
         i = i + 1
 print("‖ Making pares ...")
 pare_set = setect_pare(lbd)
+set_variat = manage_set(pare_set)
+search_sets(set_variat)
 set_variations = manage_set(pare_set)
 list_set_view = search_sets(set_variations)
 print_set_sh(list_set_view,lbd)
+
 
 input("to Exit code press Enter")
