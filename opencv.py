@@ -1,14 +1,13 @@
-import sys
 import numpy as np
-import cv2 as cv
+import cv2
 
-hsv_min = np.array((0, 54, 5), np.uint8)
-hsv_max = np.array((187, 255, 253), np.uint8)
+image = cv2.imread("img.jpg")
+image = cv2.resize(image, (int(image.shape[1] * 50 / 100), int(image.shape[0] * 50 / 100)))
 
-img = cv.imread('img.jpg')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+edges = cv2.Canny(blurred,80,300)
 
-
-cv.imshow('contours', img)
-
-cv.waitKey()
-cv.destroyAllWindows()
+cv2.imshow("sets.img", edges)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
