@@ -6,18 +6,18 @@ table = ["2VS3", "1VS3", "1GS2",
          "2GR2", "2GS2", "3RR3"]
 
 card_icon = ["|_#_|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
-          "|___|_#_|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
-          "|___|___|_#_|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
-          "|___|___|___|\n|_#_|___|___|\n|___|___|___|\n|___|___|___|",
-          "|___|___|___|\n|___|_#_|___|\n|___|___|___|\n|___|___|___|",
-          "|___|___|___|\n|___|___|_#_|\n|___|___|___|\n|___|___|___|",
-          "|___|___|___|\n|___|___|___|\n|_#_|___|___|\n|___|___|___|",
-          "|___|___|___|\n|___|___|___|\n|___|_#_|___|\n|___|___|___|",
-          "|___|___|___|\n|___|___|___|\n|___|___|_#_|\n|___|___|___|",
-          "|___|___|___|\n|___|___|___|\n|___|___|___|\n|_#_|___|___|",
-          "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|_#_|___|",
-          "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|_#_|"
-          ]
+             "|___|_#_|___|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
+             "|___|___|_#_|\n|___|___|___|\n|___|___|___|\n|___|___|___|",
+             "|___|___|___|\n|_#_|___|___|\n|___|___|___|\n|___|___|___|",
+             "|___|___|___|\n|___|_#_|___|\n|___|___|___|\n|___|___|___|",
+             "|___|___|___|\n|___|___|_#_|\n|___|___|___|\n|___|___|___|",
+             "|___|___|___|\n|___|___|___|\n|_#_|___|___|\n|___|___|___|",
+             "|___|___|___|\n|___|___|___|\n|___|_#_|___|\n|___|___|___|",
+             "|___|___|___|\n|___|___|___|\n|___|___|_#_|\n|___|___|___|",
+             "|___|___|___|\n|___|___|___|\n|___|___|___|\n|_#_|___|___|",
+             "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|_#_|___|",
+             "|___|___|___|\n|___|___|___|\n|___|___|___|\n|___|___|_#_|"
+             ]
 
 
 def input_cards():
@@ -48,7 +48,7 @@ def make_pares(cards):
     card_number = 0
     number_pare_card = 0
     print("‖ запущено создание пар.....\n"
-          "‖ создаю пары [",end="")
+          "‖ создаю пары [", end="")
     while card_number <= 11:
         # print(f"‖ создаю пары для карточки {cards[card_number]} [", end="")
         print("#", end="")
@@ -102,7 +102,7 @@ def make_combinations(pares, cards):
         number_comb_card = 0
         pare_number += 1
     print("]")
-    print(f"‖‗создание комбинаций окончено! всего {len(combinations)} комбинаций.....\n")
+    print(f"‖‗ создание комбинаций окончено! всего {len(combinations)} комбинаций.....\n")
     return combinations
 
 
@@ -117,12 +117,12 @@ def search_sets(combinations):
         if selected_comb_number % 20 == 0:
             print("#", end="")
         selected_comb = comb_l[selected_comb_number]
-        time.sleep(0.07)
+        time.sleep(0.02)
         if check_combination(selected_comb) == "True":
             sets.add(selected_comb)
         else:
             pass
-        selected_comb_number +=1
+        selected_comb_number += 1
     print("]")
     print(f"‖‗ поиск сетов окончен! всего {len(sets)} сет\сета\сетов .....\n")
     return sets
@@ -137,7 +137,7 @@ def check_combination(selected_comb):
     chars_2, color_2, form_2, bright_2 = second_elem[0], second_elem[1], second_elem[2], second_elem[3]
     chars_3, color_3, form_3, bright_3 = third_elem[0], third_elem[1], third_elem[2], third_elem[3]
 
-    if "True" == check(chars_1, chars_2, chars_3): # == кол-во
+    if "True" == check(chars_1, chars_2, chars_3):  # == кол-во
         if "True" == check(color_1, color_2, color_3):
             if "True" == check(form_1, form_2, form_3):
                 if "True" == check(bright_1, bright_2, bright_3):
@@ -161,13 +161,15 @@ def check_combination(selected_comb):
                     return "True"
                 if "False" == check(bright_1, bright_2, bright_3):
                     return "True"
-                else: return "False"
+                else:
+                    return "False"
             if "False" == check(form_1, form_2, form_3):
                 if "True" == check(bright_1, bright_2, bright_3):
                     return "True"
                 if "False" == check(bright_1, bright_2, bright_3):
                     return "True"
-                else: return "False"
+                else:
+                    return "False"
             else:
                 return "False"
         else:
@@ -196,13 +198,15 @@ def check_combination(selected_comb):
                     return "True"
                 if "False" == check(bright_1, bright_2, bright_3):
                     return "True"
-                else: return "False"
+                else:
+                    return "False"
             if "False" == check(form_1, form_2, form_3):
                 if "True" == check(bright_1, bright_2, bright_3):
                     return "True"
                 if "False" == check(bright_1, bright_2, bright_3):
                     return "True"
-                else: return "False"
+                else:
+                    return "False"
             else:
                 return "False"
         else:
@@ -222,11 +226,11 @@ def view_sets(sets):
     set_card_numb = []
 
     print(f"\n‖ На столе лежат эти карты: \n\n"
-            f"‖ | {table[0]} | {table[1]} | {table[2]} |\n"
-            f"‖ | {table[3]} | {table[4]} | {table[5]} |\n"
-            f"‖| {table[6]} | {table[7]} | {table[8]} |\n"
-            f"‖ | {table[9]} | {table[10]} | {table[11]} |\n\n"
-            f"‖‗ из этих карт можно собрать такие сеты:\n")
+          f"‖ | {table[0]} | {table[1]} | {table[2]} |\n"
+          f"‖ | {table[3]} | {table[4]} | {table[5]} |\n"
+          f"‖ | {table[6]} | {table[7]} | {table[8]} |\n"
+          f"‖ | {table[9]} | {table[10]} | {table[11]} |\n\n"
+          f"‖‗ из этих карт можно собрать такие сеты:\n")
 
     while sel_set <= len(sets) - 1:
         list = []

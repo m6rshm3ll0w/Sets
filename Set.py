@@ -259,7 +259,7 @@ def view_sets(sets):
         i += 1
 
 
-def main():
+def main(table):
     # table = input_cards()
     pares = make_pares(table)
     combinations = make_combinations(pares, table)
@@ -267,4 +267,4 @@ def main():
     view_sets(list(sets))
 
 
-main()
+main(table)
